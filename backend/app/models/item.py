@@ -22,6 +22,7 @@ class Item(Model, DbModelAuthorizeMixin):
     id: Mapped[int] = db.Column(db.Integer, primary_key=True)
     name: Mapped[str] = db.Column(db.String(128))
     icon: Mapped[str | None] = db.Column(db.String(128), nullable=True)
+    photo: Mapped[str | None] = db.Column(db.String(), db.ForeignKey("file.filename"))
     category_id: Mapped[int | None] = db.Column(
         db.Integer, db.ForeignKey("category.id")
     )

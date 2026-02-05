@@ -112,6 +112,8 @@ def updateItem(args, id):
             raise InvalidUsage()
     if "icon" in args:
         item.icon = args["icon"]
+    if "photo" in args and args["photo"] != item.photo:
+        item.photo = file_has_access_or_download(args["photo"], item.photo)
     if "name" in args and args["name"] != item.name:
         newName: str = args["name"].strip()[:128]
         if not Item.find_by_name(item.household_id, newName):
